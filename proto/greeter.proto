@@ -1,6 +1,6 @@
 syntax = "proto3";
-
-package hello;
+package grpcTestingWithBufconn;
+option go_package = "github.com/miparnisari/grpc-testing-with-bufconn";
 
 service Greeter {
     rpc SayHello (HelloRequest) returns (HelloReply) {}

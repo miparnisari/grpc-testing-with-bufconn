@@ -1,0 +1,40 @@
+---
+run:
+  timeout: '10m'
+output:
+  sort-results: true
+linters-settings:
+  revive:
+    rules:
+      - name: 'unused-parameter'
+        disabled: true
+linters:
+  enable:
+    - 'bidichk'
+    - 'bodyclose'
+    - 'errcheck'
+    - 'errname'
+    - 'errorlint'
+    - 'gci'
+    - 'gofumpt'
+    - 'goimports'
+    - 'goprintffuncname'
+    - 'gosec'
+    - 'gosimple'
+    - 'govet'
+    - 'importas'
+    - 'ineffassign'
+    - 'makezero'
+    - 'prealloc'
+    - 'predeclared'
+    - 'promlinter'
+    - 'revive'
+    - 'rowserrcheck'
+    - 'staticcheck'
+    - 'stylecheck'
+    - 'usetesting'
+    - 'typecheck'
+    - 'unconvert'
+    - 'unused'
+    - 'wastedassign'
+    - 'whitespace'

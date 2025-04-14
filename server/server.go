@@ -5,11 +5,13 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/castaneai/grpc-testing-with-bufconn"
 	"google.golang.org/grpc"
+	pb "grpc-testing-with-bufconn/proto/gen/proto"
 )
 
-type server struct{}
+type server struct {
+	pb.UnimplementedGreeterServer
+}
 
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	log.Printf("Received: %v", in.Name)
@@ -17,7 +19,7 @@ func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloRe
 }
 
 func main() {
-	addr := ":50051"
+	addr := "localhost:50051"
 	lis, err := net.Listen("tcp", addr)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
@@ -25,7 +27,7 @@ func main() {
 	s := grpc.NewServer()
 	pb.RegisterGreeterServer(s, &server{})
 
-	log.Printf("gRPC server listening on " + addr)
+	log.Printf("gRPC server listening on %s", addr)
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
